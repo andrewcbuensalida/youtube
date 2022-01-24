@@ -71,8 +71,6 @@ const MenuItem = styled.div`
 const Navbar = () => {
 	const quantity = useSelector((state) => state.cart.quantity);
 	const user = useSelector((state) => state.user.currentUser);
-	console.log(`This is user`);
-	console.log(user);
 
 	return (
 		<Container>
@@ -80,7 +78,7 @@ const Navbar = () => {
 				<Left>
 					<Language>EN</Language>
 					<SearchContainer>
-						<Input placeholder="Search" />
+						<Input placeholder="Not functioning Search" />
 						<Search style={{ color: "gray", fontSize: 16 }} />
 					</SearchContainer>
 				</Left>
