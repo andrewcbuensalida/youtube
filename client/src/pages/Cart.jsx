@@ -159,6 +159,8 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+const DemoHint=styled.div`font-size:1.7rem;
+`
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
@@ -256,12 +258,18 @@ const Cart = () => {
 							image="https://avatars.githubusercontent.com/u/1486366?v=4"
 							billingAddress
 							shippingAddress
-							description={`Your total is $${cart.total}. Demo card number is 4242 4242 4242 4242. MM/YY is 03/33. CVC is 333.`}
+							description={`Your total is $${cart.total}`}
 							amount={cart.total * 100}
 							token={onToken}
 							stripeKey={KEY}
 						>
 							<Button>CHECKOUT NOW</Button>
+							<DemoHint>
+								Demo card number is <br />
+								4242 4242 4242 4242. <br />
+								MM/YY is 03/33. <br />
+								CVC is 333.
+							</DemoHint>
 						</StripeCheckout>
 					</Summary>
 				</Bottom>
