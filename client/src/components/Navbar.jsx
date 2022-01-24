@@ -70,6 +70,10 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
 	const quantity = useSelector((state) => state.cart.quantity);
+	const user = useSelector((state) => state.user.currentUser);
+	console.log(`This is user`);
+	console.log(user);
+
 	return (
 		<Container>
 			<Wrapper>
@@ -89,19 +93,29 @@ const Navbar = () => {
 					</Link>
 				</Center>
 				<Right>
-					<Link
-						to={"/register"}
-						style={{ textDecoration: "none", color: "inherit" }}
-					>
-						<MenuItem>REGISTER</MenuItem>
-					</Link>
-					<Link
-						to={"/login"}
-						style={{ textDecoration: "none", color: "inherit" }}
-					>
-						{" "}
-						<MenuItem>SIGN IN</MenuItem>
-					</Link>
+					{user ? `Welcome ${user.username}`: (
+						<>
+							<Link
+								to={"/register"}
+								style={{
+									textDecoration: "none",
+									color: "inherit",
+								}}
+							>
+								<MenuItem>REGISTER</MenuItem>
+							</Link>
+							<Link
+								to={"/login"}
+								style={{
+									textDecoration: "none",
+									color: "inherit",
+								}}
+							>
+								{" "}
+								<MenuItem>SIGN IN</MenuItem>
+							</Link>
+						</>
+					)}
 
 					<Link to="/cart">
 						<MenuItem>
