@@ -167,13 +167,13 @@ const Cart = () => {
   const onToken = (token) => {
     setStripeToken(token);
   };
-
+  
   useEffect(() => {
     const makeRequest = async () => {
       try {
         const res = await userRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
-          amount: 500,
+          amount: cart.total,
         });
         history.push("/success", {
           stripeData: res.data,
@@ -191,8 +191,8 @@ const Cart = () => {
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
+            <TopText>Shopping Bag()</TopText>
+            <TopText>Your Wishlist ()</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
@@ -248,7 +248,7 @@ const Cart = () => {
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
-              name="Lama Shop"
+              name="just do it."
               image="https://avatars.githubusercontent.com/u/1486366?v=4"
               billingAddress
               shippingAddress
