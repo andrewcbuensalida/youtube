@@ -9,6 +9,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -184,6 +185,9 @@ const Cart = () => {
     };
     stripeToken && makeRequest();
   }, [stripeToken, cart, history]);
+  console.log(`This is cart`)
+  console.log(cart)
+  
   return (
 		<Container>
 			<Navbar />
@@ -191,7 +195,9 @@ const Cart = () => {
 			<Wrapper>
 				<Title>YOUR BAG</Title>
 				<Top>
-					<TopButton>CONTINUE SHOPPING</TopButton>
+					<Link to="/">
+						<TopButton>CONTINUE SHOPPING</TopButton>
+					</Link>
 					<TopTexts>
 						<TopText>Shopping Bag()</TopText>
 						<TopText>Your Wishlist ()</TopText>
