@@ -191,7 +191,7 @@ const Cart = () => {
 					cart: cart,
 				});
 			} catch (error){
-        console.log(`This is error`)
+        console.log(`This is error in make request`)
         console.log(error)
         
       }

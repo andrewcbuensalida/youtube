@@ -1,4 +1,6 @@
 todo:
+login
+register
 logout
 edit item checkout
 delete cart after payment

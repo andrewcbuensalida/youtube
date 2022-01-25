@@ -65,8 +65,12 @@ const Register = () => {
 	const [password, setPassword] = useState(null);
 	const dispatch = useDispatch();
 
-	const { isFetching, error } = useSelector((state) => state.user);
+	const { isFetching, error,errorMessage } = useSelector((state) => state.user);
+	
 
+	console.log(`This is errorMessage`)
+	console.log(errorMessage)
+	
 	const handleClick = (e) => {
 		e.preventDefault();
 		register(dispatch, { username, password,email });
@@ -75,16 +79,19 @@ const Register = () => {
 		<Container>
 			<Wrapper>
 				<Title>CREATE AN ACCOUNT</Title>
-				<Form>
+				<Form onSubmit={handleClick}>
 					<Input
+						required
 						placeholder="username"
 						onChange={(e) => setUsername(e.target.value)}
 					/>{" "}
 					<Input
+						required
 						placeholder="email"
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 					<Input
+						required
 						placeholder="password"
 						type="password"
 						onChange={(e) => setPassword(e.target.value)}
@@ -94,10 +101,8 @@ const Register = () => {
 						my personal data in accordance with the{" "}
 						<b>PRIVACY POLICY</b>
 					</Agreement>
-					<Button onClick={handleClick} disabled={isFetching}>
-						CREATE
-					</Button>
-					{error && <Error>Something went wrong...</Error>}
+					<Button disabled={isFetching}>CREATE</Button>
+					{error && <Error>{errorMessage}</Error>}
 				</Form>
 			</Wrapper>
 		</Container>
