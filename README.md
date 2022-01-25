@@ -11,9 +11,7 @@ stripe says stripe.charges api is the old method.
 stripe.paymentIntents is the unifying method.
 
 had to put
-
 <script src="https://js.stripe.com/v2/"></script>
-
 in html to remove cors
 
 styled components bad because doesn't highlight when selecting similar names. also have to scroll far up just to see imports. and no auto complete. just put css in a different file.

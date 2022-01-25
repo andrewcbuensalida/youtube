@@ -18,7 +18,8 @@ mongoose
     console.log(err);
   });
 
-app.use(cors());
+app.use(cors({ origin: "https://justdoit.anhonestobserver.com" })); //for production. 
+// app.use(cors()); //for development
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
