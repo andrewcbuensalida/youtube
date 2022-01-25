@@ -162,6 +162,9 @@ const Button = styled.button`
 	background-color: black;
 	color: white;
 	font-weight: 600;
+  &:disabled {
+    cursor:not-allowed
+  }
 `;
 
 const DemoHint = styled.div`
@@ -198,12 +201,11 @@ const Cart = () => {
 			}
 		};
 		stripeToken && cart.total >= 1 && makeRequest();
-	}, [stripeToken, cart, history]);
+	}, [stripeToken]);
 	function handleEditQuantity(type, batchID) {
-		console.log(`This is cart`)
-    console.log(cart)
-    
-    
+		console.log(`This is cart`);
+		console.log(cart);
+
 		dispatch(editQuantity({ batchID, type }));
 	}
 	return (
@@ -244,6 +246,7 @@ const Cart = () => {
 								<PriceDetail>
 									<ProductAmountContainer>
 										<Add
+											style={{ cursor: "pointer" }}
 											onClick={() =>
 												handleEditQuantity(
 													"inc",
@@ -255,6 +258,7 @@ const Cart = () => {
 											{product.quantity}
 										</ProductAmount>
 										<Remove
+											style={{ cursor: "pointer" }}
 											onClick={() =>
 												handleEditQuantity(
 													"dec",
@@ -315,7 +319,7 @@ const Cart = () => {
 								4242 4242 4242 4242. <br /> MM/YY is 03/33. CVC
 								is 333.
 							</DemoHint>
-							<Button>CHECKOUT NOW</Button>
+							<Button disabled={!cart.quantity}>CHECKOUT NOW</Button>
 						</StripeCheckout>{" "}
 					</Summary>
 				</Bottom>

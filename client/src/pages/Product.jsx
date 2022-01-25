@@ -123,6 +123,9 @@ const Button = styled.button`
 	&:hover {
 		background-color: #f8f4f4;
 	}
+	&:active {
+		background-color: #d1d1d1;
+	}
 `;
 
 const Product = () => {
