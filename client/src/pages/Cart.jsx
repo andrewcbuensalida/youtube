@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
-import { deleteCart } from "../redux/cartRedux";
+import { deleteCart, editQuantity } from "../redux/cartRedux";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -197,9 +197,15 @@ const Cart = () => {
 				console.log(error);
 			}
 		};
-		stripeToken && makeRequest();
+		stripeToken && cart.total >= 1 && makeRequest();
 	}, [stripeToken, cart, history]);
-
+	function handleEditQuantity(type, batchID) {
+		console.log(`This is cart`)
+    console.log(cart)
+    
+    
+		dispatch(editQuantity({ batchID, type }));
+	}
 	return (
 		<Container>
 			<Navbar />
@@ -237,11 +243,25 @@ const Cart = () => {
 								</ProductDetail>
 								<PriceDetail>
 									<ProductAmountContainer>
-										<Add />
+										<Add
+											onClick={() =>
+												handleEditQuantity(
+													"inc",
+													product.batchID
+												)
+											}
+										/>
 										<ProductAmount>
 											{product.quantity}
 										</ProductAmount>
-										<Remove />
+										<Remove
+											onClick={() =>
+												handleEditQuantity(
+													"dec",
+													product.batchID
+												)
+											}
+										/>
 									</ProductAmountContainer>
 									<ProductPrice>
 										${" "}
@@ -283,7 +303,9 @@ const Cart = () => {
 							image="https://avatars.githubusercontent.com/u/1486366?v=4"
 							billingAddress
 							shippingAddress
-							description={`Your total is $${cart.total.toFixed(2)}`}
+							description={`Your total is $${cart.total.toFixed(
+								2
+							)}`}
 							amount={cart.total * 100}
 							token={onToken}
 							stripeKey={KEY}

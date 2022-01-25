@@ -98,6 +98,7 @@ const AmountContainer = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: 700;
+	cursor: pointer;
 `;
 
 const Amount = styled.span`
@@ -109,6 +110,7 @@ const Amount = styled.span`
 	align-items: center;
 	justify-content: center;
 	margin: 0px 5px;
+	cursor: default;
 `;
 
 const Button = styled.button`
@@ -145,9 +147,9 @@ const Product = () => {
 		if (product.color) {
 			setColor(product?.color[0]);
 		}
-    if(product.size){
-      setSize(product?.size[0]);
-    }
+		if (product.size) {
+			setSize(product?.size[0]);
+		}
 	}, [product]);
 
 	const handleQuantity = (type) => {
@@ -159,7 +161,15 @@ const Product = () => {
 	};
 
 	const handleClick = () => {
-		dispatch(addProduct({ ...product, quantity, color, size }));
+		dispatch(
+			addProduct({
+				...product,
+				quantity,
+				color,
+				size,
+				batchID: Math.random(),
+			})
+		);
 	};
 	return (
 		<Container>
