@@ -4,6 +4,7 @@ size drop down filter should be dependent on available product sizes, not hard-c
 not sure if sort products working because only 1 item per category.
 search bar
 non english mode
+mobile friendly
 
 ==============================================
 stripe says stripe.charges api is the old method.
