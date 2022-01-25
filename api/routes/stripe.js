@@ -4,6 +4,9 @@ const KEY = process.env.STRIPE_KEY;
 const stripe = require("stripe")(KEY);
 
 router.post("/payment", async (req, res) => {
+	console.log(`This is req.body`)
+	console.log(req.body)
+	
 	const session = await stripe.checkout.sessions.create({
 		line_items: [
 			{
@@ -12,7 +15,7 @@ router.post("/payment", async (req, res) => {
 					product_data: {
 						name: "T-shirt",
 					},
-					unit_amount: req.body.amount*100,
+					unit_amount: Math.round(req.body.amount*100),
 				},
 				quantity: 1,
 			},

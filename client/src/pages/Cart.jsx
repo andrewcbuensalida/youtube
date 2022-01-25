@@ -1,5 +1,5 @@
 import { Add, Remove } from "@material-ui/icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { deleteCart } from "../redux/cartRedux";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -92,6 +93,9 @@ const ProductColor = styled.div`
 	height: 20px;
 	border-radius: 50%;
 	background-color: ${(props) => props.color};
+	border-width: 1px;
+	border-color: grey;
+	border-style: solid;
 `;
 
 const ProductSize = styled.span``;
@@ -133,7 +137,7 @@ const Summary = styled.div`
 	border: 0.5px solid lightgray;
 	border-radius: 10px;
 	padding: 20px;
-	height: 50vh;
+	// height: 50vh;
 `;
 
 const SummaryTitle = styled.h1`
@@ -161,9 +165,12 @@ const Button = styled.button`
 `;
 
 const DemoHint = styled.div`
-	font-size: 1.7rem;
+	font-size: 1.3rem;
+	margin-bottom: 1em;
 `;
 const Cart = () => {
+	const dispatch = useDispatch();
+
 	const cart = useSelector((state) => state.cart);
 	const [stripeToken, setStripeToken] = useState(null);
 	const history = useHistory();
@@ -175,31 +182,23 @@ const Cart = () => {
 	useEffect(() => {
 		const makeRequest = async () => {
 			try {
-        console.log(`1`)
-        console.log(`This is cart`)
-        console.log(cart)
-        
 				const response = await userRequest.post("/checkout/payment", {
 					cart: cart,
 					amount: cart.total,
 				});
-        console.log(`This is response`)
-        console.log(response)
-                
+
 				history.push("/success", {
 					stripeData: response.data.data,
 					cart: cart,
 				});
-			} catch (error){
-        console.log(`This is error in make request`)
-        console.log(error)
-        
-      }
+				dispatch(deleteCart());
+			} catch (error) {
+				console.log(`This is error in make request`);
+				console.log(error);
+			}
 		};
 		stripeToken && makeRequest();
 	}, [stripeToken, cart, history]);
-	console.log(`This is cart`);
-	console.log(cart);
 
 	return (
 		<Container>
@@ -245,7 +244,10 @@ const Cart = () => {
 										<Remove />
 									</ProductAmountContainer>
 									<ProductPrice>
-										$ {product.price * product.quantity}
+										${" "}
+										{(
+											product.price * product.quantity
+										).toFixed(2)}
 									</ProductPrice>
 								</PriceDetail>
 							</Product>
@@ -256,7 +258,9 @@ const Cart = () => {
 						<SummaryTitle>ORDER SUMMARY</SummaryTitle>
 						<SummaryItem>
 							<SummaryItemText>Subtotal</SummaryItemText>
-							<SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+							<SummaryItemPrice>
+								$ {cart.total.toFixed(2)}
+							</SummaryItemPrice>
 						</SummaryItem>
 						<SummaryItem>
 							<SummaryItemText>
@@ -270,26 +274,27 @@ const Cart = () => {
 						</SummaryItem>
 						<SummaryItem type="total">
 							<SummaryItemText>Total</SummaryItemText>
-							<SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+							<SummaryItemPrice>
+								$ {cart.total.toFixed(2)}
+							</SummaryItemPrice>
 						</SummaryItem>
 						<StripeCheckout
 							name="just do it"
 							image="https://avatars.githubusercontent.com/u/1486366?v=4"
 							billingAddress
 							shippingAddress
-							description={`Your total is $${cart.total}`}
+							description={`Your total is $${cart.total.toFixed(2)}`}
 							amount={cart.total * 100}
 							token={onToken}
 							stripeKey={KEY}
 						>
-							<Button>CHECKOUT NOW</Button>
 							<DemoHint>
 								Demo card number is <br />
-								4242 4242 4242 4242. <br />
-								MM/YY is 03/33. <br />
-								CVC is 333.
+								4242 4242 4242 4242. <br /> MM/YY is 03/33. CVC
+								is 333.
 							</DemoHint>
-						</StripeCheckout>
+							<Button>CHECKOUT NOW</Button>
+						</StripeCheckout>{" "}
 					</Summary>
 				</Bottom>
 			</Wrapper>

@@ -102,7 +102,7 @@ const Navbar = () => {
 					{user ? (
 						<>
 							Welcome {user.username}
-							<button onClick={handleLogout}>Logout</button>
+							<button onClick={handleLogout} style={{marginLeft:'1em'}}>Logout</button>
 						</>
 					) : (
 						<>

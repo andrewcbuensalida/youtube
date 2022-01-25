@@ -5,38 +5,32 @@ import { Link } from "react-router-dom";
 import { userRequest } from "../requestMethods";
 
 const Success = () => {
-  const location = useLocation();
-  //in Cart.jsx I sent data and cart. Please check that page for the changes.(in video it's only data)
-  const data = location.state.stripeData;
-  const cart = location.state.cart;
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const [orderId, setOrderId] = useState(null);
+	const location = useLocation();
+	//in Cart.jsx I sent data and cart. Please check that page for the changes.(in video it's only data)
+	const data = location.state.stripeData;
+	const cart = location.state.cart;
+	const currentUser = useSelector((state) => state.user.currentUser);
+	const [orderId, setOrderId] = useState(null);
 
-  useEffect(() => {
-    const createOrder = async () => {
-      console.log(`This is currentUser`)
-      console.log(currentUser)
-      console.log(`This is cart`)
-      console.log(cart)
-      
-      
-      try {
-        const res = await userRequest.post("/orders", {
-			userId: currentUser._id,
-			products: cart.products.map((item) => ({
-				productId: item._id,
-				quantity: item._quantity,
-			})),
-			amount: cart.total,
-			address: data.shipping_address_collection,
-		});
-        setOrderId(res.data.id);
-      } catch {}
-    };
-    data && createOrder();
-  }, [cart, data, currentUser]);
+	useEffect(() => {
+		const createOrder = async () => {
+			try {
+				const res = await userRequest.post("/orders", {
+					userId: currentUser._id,
+					products: cart.products.map((item) => ({
+						productId: item._id,
+						quantity: item._quantity,
+					})),
+					amount: cart.total,
+					address: data.shipping_address_collection,
+				});
+				setOrderId(res.data.id);
+			} catch {}
+		};
+		data && createOrder();
+	}, [cart, data, currentUser]);
 
-  return (
+	return (
 		<div
 			style={{
 				height: "100vh",
@@ -48,14 +42,14 @@ const Success = () => {
 		>
 			{orderId
 				? `Order has been created successfully. Your order number is ${orderId}`
-				: `Successfull. Your order is being prepared...`}
+				: `Successful. Your order is being prepared...`}
 			<Link to="/">
 				<button style={{ padding: 10, marginTop: 20 }}>
 					Go to Homepage
 				</button>
 			</Link>
 		</div>
-  );
+	);
 };
 
 export default Success;

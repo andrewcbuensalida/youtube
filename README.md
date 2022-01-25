@@ -1,12 +1,6 @@
 todo:
-login
-register
-logout
 edit item checkout
-delete cart after payment
-default size to cart
 save order to db
-too many decimals in price
 group items checkout
 
 

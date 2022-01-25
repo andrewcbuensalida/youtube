@@ -1,12 +1,5 @@
 export const sliderItems = [
 	{
-		id: 1,
-		img: "https://media.istockphoto.com/photos/beautiful-lady-overjoyed-by-warm-spring-breeze-dream-of-romantic-date-picture-id1170648040?k=20&m=1170648040&s=612x612&w=0&h=eOMcjFL2qyKnfvkH3IbIYkAKWXtQXCScCE12ahhqX_w=",
-		title: "SUMMER SALE",
-		desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-		bg: "FFC0CB",
-	},
-	{
 		id: 2,
 		img: "https://i.ibb.co/DG69bQ4/2.png",
 		title: "AUTUMN COLLECTION",
@@ -19,6 +12,13 @@ export const sliderItems = [
 		title: "LOUNGEWEAR LOVE",
 		desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
 		bg: "fbf0f4",
+	},
+	{
+		id: 1,
+		img: "https://media.istockphoto.com/photos/beautiful-lady-overjoyed-by-warm-spring-breeze-dream-of-romantic-date-picture-id1170648040?k=20&m=1170648040&s=612x612&w=0&h=eOMcjFL2qyKnfvkH3IbIYkAKWXtQXCScCE12ahhqX_w=",
+		title: "SUMMER SALE",
+		desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+		bg: "FFC0CB",
 	},
 ];
 
