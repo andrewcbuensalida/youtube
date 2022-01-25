@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import { userRequest } from "../requestMethods";
 
 const Success = () => {
@@ -13,37 +14,47 @@ const Success = () => {
 
   useEffect(() => {
     const createOrder = async () => {
+      console.log(`This is currentUser`)
+      console.log(currentUser)
+      console.log(`This is cart`)
+      console.log(cart)
+      
+      
       try {
         const res = await userRequest.post("/orders", {
-          userId: currentUser._id,
-          products: cart.products.map((item) => ({
-            productId: item._id,
-            quantity: item._quantity,
-          })),
-          amount: cart.total,
-          address: data.billing_details.address,
-        });
-        setOrderId(res.data._id);
+			userId: currentUser._id,
+			products: cart.products.map((item) => ({
+				productId: item._id,
+				quantity: item._quantity,
+			})),
+			amount: cart.total,
+			address: data.shipping_address_collection,
+		});
+        setOrderId(res.data.id);
       } catch {}
     };
     data && createOrder();
   }, [cart, data, currentUser]);
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      {orderId
-        ? `Order has been created successfully. Your order number is ${orderId}`
-        : `Successfull. Your order is being prepared...`}
-      <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
-    </div>
+		<div
+			style={{
+				height: "100vh",
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "center",
+			}}
+		>
+			{orderId
+				? `Order has been created successfully. Your order number is ${orderId}`
+				: `Successfull. Your order is being prepared...`}
+			<Link to="/">
+				<button style={{ padding: 10, marginTop: 20 }}>
+					Go to Homepage
+				</button>
+			</Link>
+		</div>
   );
 };
 
