@@ -1,5 +1,8 @@
 import axios from "axios";
 
+console.log(`This is process.env.NODE_ENV`)
+console.log(process.env.NODE_ENV)
+
 let BASE_URL
 if (process.env.NODE_ENV === "development") {
 	 BASE_URL = "http://localhost:5000/api/"; //for development

@@ -19,3 +19,21 @@ styled components bad because doesn't highlight when selecting similar names. al
 redux bad because cant console.log. just use context.
 
 react stripe checkout is hard to customize.
+
+
+================================================
+heroku stuff
+created an account on their website
+downloaded heroku cli
+added path to env variables
+
+already had github repo, in api folder, so had to
+heroku create
+it will create a heroku name and heroku git
+when trying to git push heroku mern-ecommerce-app-1
+it says heroku does not apear to be a git repository
+git remote -v doesnt have heroku
+heroku git:remote -a immense-brook-98755
+this set the remote
+then do git push heroku mern-ecommerce-app-1
+now when i do git remote -v, it shows heroku
