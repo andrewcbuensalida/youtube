@@ -87,6 +87,7 @@ const Register = () => {
 					/>{" "}
 					<Input
 						required
+						type="email"
 						placeholder="email"
 						onChange={(e) => setEmail(e.target.value)}
 					/>

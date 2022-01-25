@@ -20,7 +20,7 @@ export const register = async (dispatch, user) => {
 	dispatch(registerStart());
 	try {
 		const res = await publicRequest.post("/auth/register", user);
-    
+    // res.data becomes action.payload
 		dispatch(registerSuccess(res.data));
 	} catch (err) {
     console.log(`This is err.response in catch`)
