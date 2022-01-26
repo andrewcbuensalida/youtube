@@ -40,3 +40,5 @@ now when i do git remote -v, it shows heroku
 not working though. seems like there are a lot of ways to deploy. either connecting to github, or serving react from node, or 
 
 testing github heroku integration
+No default language could be detected for this app. 
+maybe because package.json of node is not in the root.
