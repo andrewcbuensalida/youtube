@@ -38,3 +38,5 @@ this set the remote
 then do git push heroku mern-ecommerce-app-1
 now when i do git remote -v, it shows heroku
 not working though. seems like there are a lot of ways to deploy. either connecting to github, or serving react from node, or 
+
+testing github heroku integration
