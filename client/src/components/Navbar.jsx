@@ -95,7 +95,7 @@ const Navbar = () => {
 						to={"/"}
 						style={{ textDecoration: "none", color: "inherit" }}
 					>
-						<Logo>just do it.</Logo>
+						<Logo>JUST do it.</Logo>
 					</Link>
 				</Center>
 				<Right>

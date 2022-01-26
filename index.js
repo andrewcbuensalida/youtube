@@ -24,7 +24,7 @@ console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("client/build"));
 }
-
+//cors not needed because express is serving react
 // app.use(cors({ origin: "http://justdoit.anhonestobserver.com" })); //for production.
 // app.use(cors()); //for development
 app.use(express.json());
@@ -36,5 +36,5 @@ app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
 
 app.listen(process.env.PORT || 5000, () => {
-	console.log("Backend server is running on port " + process.env.PORT);
+	console.log("Backend server is running on port: " + process.env.PORT);
 });

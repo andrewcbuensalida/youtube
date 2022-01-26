@@ -44,4 +44,4 @@ No default language could be detected for this app.
 maybe because package.json of node is not in the root.
 now it is working, just push to github, it will auto deploy to heroku, auto build. had to put env variables in heroku.
 
-workflow is during development, inside client, npm run start. in root where index.js (server) is, npm run start. this will live reload. dont need cors anymore since node server is serving the front end. when ready to deploy, just git push or through vs code sync, it will upload to github, which will upload to heroku, which will build and deploy.
+workflow is during development, inside client, npm run start. in root where index.js (server) is, npm run start. this will live reload. dont need cors anymore since node server is serving the front end. no need to build locally. when ready to deploy, just git push or through vs code sync, it will upload to github, which will upload to heroku, which will build and deploy. 
