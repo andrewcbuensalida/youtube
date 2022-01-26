@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 }
 //cors not needed because express is serving react
 // app.use(cors({ origin: "http://justdoit.anhonestobserver.com" })); //for production.
-// app.use(cors()); //for development
+app.use(cors()); //for development
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
