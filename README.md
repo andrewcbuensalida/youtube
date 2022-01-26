@@ -50,3 +50,5 @@ workflow is during development, inside client, npm run start. in root where inde
 the problem with heroku is, you have to pay for https (ssl)
 
 to restrict mongodb atlas to allow only heroku ip address, have to add-on on heroku. fixie socks, have to add both ip address from fixie socks to mongodb
+
+have to have cors, even if express is serving the front-end
