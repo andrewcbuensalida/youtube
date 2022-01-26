@@ -1,6 +1,6 @@
 import axios from "axios";
 
-console.log(`This is process.env.NODE_ENV`)
+console.log(`This is process.env.NODE_ENV..`)
 console.log(process.env.NODE_ENV)
 
 let BASE_URL

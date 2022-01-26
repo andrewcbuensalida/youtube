@@ -23,7 +23,7 @@ const Products = ({ cat, filters, sort }) => {
           cat
             ? `/products?category=${cat}`
             : "/products"
-        );
+        );        
         setProducts(res.data);
       } catch (err) {}
     };
