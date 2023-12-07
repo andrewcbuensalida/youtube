@@ -11,6 +11,7 @@ const verifyToken = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_SEC, (err, user) => {
       if (err) res.status(403).json("Token is not valid!");
+      // TODO might have to check database to make sure this user isn't delete or anything
       req.user = user;
       next();
     });
@@ -21,6 +22,7 @@ const verifyToken = (req, res, next) => {
 
 const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
+    // TODO req.params.id id is sometimes called userId in the routes
     if (req.user.id === req.params.id || req.user.isAdmin) {
       next();
     } else {
